@@ -1,0 +1,3 @@
+-- Detail Transaction Document WebFocus rewrite
+-- Query by Banner ID Term, Address Type
+-- Return address , list charges/payments

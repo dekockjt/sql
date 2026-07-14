@@ -1,0 +1,36 @@
+[submodule "ob3"]
+	path = ob3
+	url = https://github.com/dekockjt/ob3.git
+[submodule "fws"]
+	path = fws
+	url = https://github.com/dekockjt/fws.git
+[submodule "rbrabrc_export"]
+	path = rbrabrc_export
+	url = https://github.com/dekockjt/rbrabrc_export.git
+[submodule "misc_queries"]
+	path = misc_queries
+	url = https://github.com/dekockjt/misc_queries.git
+[submodule "sap"]
+	path = sap
+	url = https://github.com/dekockjt/sap.git
+[submodule "scholarships"]
+	path = scholarships
+	url = https://github.com/dekockjt/scholarships.git
+[submodule "prd_budg"]
+	path = prd_budg
+	url = https://github.com/dekockjt/prd_budg.git
+[submodule "pbb"]
+	path = pbb
+	url = https://github.com/dekockjt/pbb.git
+[submodule "ddl"]
+	path = ddl
+	url = https://github.com/dekockjt/ddl.git
+[submodule "mdhe"]
+	path = mdhe
+	url = https://github.com/dekockjt/mdhe.git
+[submodule "rorrule"]
+	path = rorrule
+	url = https://github.com/dekockjt/rorrule.git
+[submodule "dbutils"]
+	path = dbutils
+	url = https://github.com/dekockjt/dbutils.git

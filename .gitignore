@@ -1,0 +1,11 @@
+.DS_Store
+**/*.csv
+**/*.doc*
+**/*.ppt*
+**/*.xls*
+**/*.env
+**/*.yxmd
+**/*.bak
+**/*.pbix
+z_out/
+db_conn.md
