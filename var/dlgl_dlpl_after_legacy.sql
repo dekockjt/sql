@@ -15,4 +15,3 @@ and rpratrm_aidy_code = '2627'
 and rpratrm_awst_code = 'ACPT'
 and rpratrm_term_code > robnyud_value_195
 ;
-    
