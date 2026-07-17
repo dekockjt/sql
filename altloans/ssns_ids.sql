@@ -21,19 +21,26 @@ with term as (
     ) a
     join spriden on spriden_pidm = a.pidm and spriden_change_ind is null
     where rn = 1
-), enrl as (
-    select pidm, term, rokmisc.F_CALC_STUD_BILL_HRS(term, pidm, 'N') as hrs
-    from (
-        select distinct sfrstcr_pidm as pidm, sfrstcr_term_code as term
-        from sfrstcr 
-        where sfrstcr_term_code = (select t from term)
-        and sfrstcr_bill_hr > 0
-    ) a
+), ftht as (
+    select pidm, term, tmst from (
+        select 
+            sfrthst_pidm as pidm,
+            sfrthst_term_code as term,
+            sfrthst_tmst_code as tmst,
+            row_number() over (
+                partition by sfrthst_pidm, sfrthst_term_code
+                order by sfrthst_tmst_date desc
+            ) as rn
+        from sfrthst
+        where sfrthst_term_code = (select t from term)
+    )
 ), stu as (
     select
         a.sgbstdn_pidm as pidm,
         a.sgbstdn_levl_code as levl,
-        a.sgbstdn_program_1 as prog
+        a.sgbstdn_program_1 as prog,
+        a.sgbstdn_degc_code_1 as degc,
+        a.sgbstdn_exp_grad_date as exp_grad
     from sgbstdn a
     where a.sgbstdn_term_code_eff = (
         select max(z.sgbstdn_term_code_eff)
@@ -45,11 +52,23 @@ with term as (
 )
 select 
     bid, 
-    ssn, nvl(term, (select t from term)) as term, 
-    hrs,
+    ssn, 
+    nvl(term, (select t from term)) as term,
+    tmst,
     levl, 
-    prog
+    degc,
+    prog,
+    exp_grad
 from ids a
-left join enrl b on b.pidm = a.pidm
-left join stu c on c.pidm = a.pidm
+join stu c on c.pidm = a.pidm
+left join ftht d on d.pidm = a.pidm
+
 ;
+
+select distinct stvterm_code as term
+from stvterm
+where substr(stvterm_code, 0, 4) 
+    between to_char(extract(year from sysdate) - 2) 
+    and to_char(extract(year from sysdate) + 1)
+and substr(stvterm_code, 5, 2) in ('00', '10', '20')
+order by stvterm_code desc;
